@@ -47,4 +47,10 @@ export class RepozytoriumPamiecioweService implements GetDataInterface, FormSubm
 
     throw new Error("Nie znaleziono obiektu.");
   }
+
+Delete(id: number): Observable<boolean> {
+    console.warn(`Wywołano atrapę usuwania dla ID: ${id}. Akcja zignorowana.`);
+    return of(true); // Natychmiast zwraca "sukces"
+  }
+  
 }

@@ -6,6 +6,7 @@
             <th>Cena</th>
             <th>Data premiery</th>
             <th>Edycja</th>
+            <th>Usuwanie</th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +15,8 @@
             <td>{{d.tytul}}</td>
             <td>{{d.cena | currency:'PLN'}}</td>
             <td>{{d.dataPremiery | date:"shortDate"}}</td>
-            <td><a [routerLink]="d.id + ''">Przejdź do edycji</a></td>
+            <td><a [routerLink]="d.id + ''">Przejdź do edycji</a> </td>
+            <td><button (click)="usunGre(d.id)" style="cursor: pointer; color: red;">Usuń</button></td>
         </tr>
     </tbody>
 </table>

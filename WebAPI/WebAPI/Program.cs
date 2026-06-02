@@ -1,4 +1,3 @@
-
 namespace WebAPI
 {
     public class Program
@@ -10,6 +9,19 @@ namespace WebAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularApp",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4115")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -23,8 +35,9 @@ namespace WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
+            app.UseCors("AllowAngularApp");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

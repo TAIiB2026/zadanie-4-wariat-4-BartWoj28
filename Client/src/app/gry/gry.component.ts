@@ -9,5 +9,13 @@ import { GET_DATA_TOKEN } from '../tokens/get-data.token';
 })
 export class GryComponent {
   private readonly service = inject(GET_DATA_TOKEN);
-  public readonly data$ = this.service.Get();
+  public data$ = this.service.Get();
+
+  usunGre(id: number) {
+    if (confirm('Czy na pewno chcesz usunąć tę grę?')) {
+      this.service.Delete(id).subscribe(() => {
+        this.data$ = this.service.Get();
+      });
+    }
+  }
 }
